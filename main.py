@@ -14,7 +14,21 @@ def my_new_url_with_123():
     return('И снова здравствуй, так и что не меняемся?')
 
 @app.route('/hello/')
-def new_hello():
-    return 'Привет странник     xss'
+@app.route('/hello/<name>')
+def new_hello(name="странник"):
+    return f'Привет, {name}'
+
+@app.route('/bye/')
+@app.route('/bye/<name>')
+def goodbye(name="Я не знаю с кем прощаться, поэтому и не буду"):
+    if " " in name:
+        return f'Хорошего Вам дня, {name}'
+    if "" in name:
+        return f'Пока, {name}'
+    else:
+        return f'{name}'
+
+
+
 
 
