@@ -30,5 +30,31 @@ def goodbye(name="Я не знаю с кем прощаться, поэтому 
 
 
 
+@app.route('/plus/<int:a>/<int:b>')
+def plus(a, b):
+    return f"Сумма {a} + {b} = {a + b}"
+
+@app.route('/sub/<int:a>/<int:b>')
+def sub(a, b):
+    return f"Разность {a} - {b} = {a - b}"
+
+@app.route('/mul/<int:a>/<int:b>')
+def mul(a, b):
+    return f"{a} * {b} = {a * b}"
+
+@app.route('/div/<int:a>/<int:b>')
+def div(a, b):
+    return f"{a} / {b} = {a / b}"
 
 
+
+@app.route('/<int:a>/<operation>/<int:b>')
+def operate(operation, a, b):
+    if "плюс" in operation:
+        return f"{a + b}"
+    if "минус" in operation:
+        return f"{a - b}"
+    if "умножить" in operation:
+        return f"{a * b}"
+    if "разделить" in operation:
+        return f"{a / b}"
